@@ -1,15 +1,12 @@
-package repro_test
+package repro
 
 import (
 	"testing"
-
-	"foo/pkg/repro"
 )
 
 func TestTestable(t *testing.T) {
-	result := repro.Testable()
+	result := Testable()
 	if !result {
 		t.Fatalf("it should be true")
 	}
 }
-
