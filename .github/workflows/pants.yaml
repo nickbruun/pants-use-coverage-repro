@@ -1,0 +1,35 @@
+name: Pants
+
+env:
+  PYTHONUNBUFFERED: 1
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test
+
+    env:
+      PANTS_CONFIG_FILES: pants.ci.toml
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-go@v5
+      with:
+        go-version: "1.23"
+
+    - uses: pantsbuild/actions/init-pants@v9
+      with:
+        # To fully bust the cache, simply increment the version number here.
+        gha-cache-key: v1
+
+    - name: Test
+      run: |
+        pants test ::

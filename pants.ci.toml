@@ -1,0 +1,10 @@
+[GLOBAL]
+# Colors often work in CI, but the shell is usually not a TTY so Pants
+# doesn't attempt to use them by default.
+colors = true
+
+[stats]
+log = true
+
+[test]
+use_coverage = true
